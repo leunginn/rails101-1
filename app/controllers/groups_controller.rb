@@ -11,6 +11,9 @@ class GroupsController < ApplicationController
     @group.save
     redirect_to groups_path
   end
+  def show
+    @group=Group.find(params[:id])
+  end
   private
   def group_params
     params.require(:group).permit(:title,:description)

@@ -1,4 +1,5 @@
-<%=form_for @group do |f|%>
+<!-- <%=form_for @group do |f|%> -->
+
 <!-- <% if @group.errors.any?%>
 <ul>
   <% @group.errors.full_messages.each do |msg|%>
@@ -14,7 +15,8 @@ description
 <%=f.text_area :description%>
 <br>
 <%=f.submit("Submit",:disable_with=>'Submiting...')%> -->
-<div class="form-group">
+
+<!-- <div class="form-group">
   <div class="form-group string optional">
     <%=f.label "title",:class=>"string optional control-label"%>
     <%=f.text_field :title,:class=>"string optional form-control"%>
@@ -23,7 +25,19 @@ description
     <%=f.label "description",:class=>"string optional control-label"%>
     <%=f.text_area :description,:class=>"string optional form-control"%>
   </div>
-</div>
-<%=f.submit "Submit",class:"btn btn-primary",data:{disable_with:"Submiting..."}%>
+</div> -->
 
-<%end%>
+<!-- <%=simple_form_for @group do |f|%>
+<div class="form-group">
+  <%=f.input :title,input_html:{class:"form-control"}%>
+  <%=f.input :description,input_html:{class:"form-control"}%>
+</div>
+  <%=f.submit "Submit",class:"btn btn-primary",data:{disable_with:"Submiting..."}%>
+<%end%> -->
+<%= simple_form_for @group do |f| %>
+  <div class="form-group">
+    <%= f.input :title, input_html: { class: "form-control"} %>
+    <%= f.input :description, input_html: { class: "form-control"} %>
+  </div>
+  <%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submiting..." } %>
+<% end %>

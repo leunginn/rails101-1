@@ -16,8 +16,8 @@
         <td><%=post.group.title%></td>
         <td><%=post.updated_at%></td>
         <td><%=link_to("Edit",edit_group_path(post.group,post),class:"btn btn-default btn-xs")%></td>
-        <td><%=link_to("Delete",group_posst_path(post.group,post),method: :delete,data:{confirm:"are
-          you sure ?"}class:"btn btn-default btn-xs")%></td>
+        <td><%=link_to("Delete",group_post_path(post.group,post),method: :delete,data:{confirm:"are
+          you sure ?"},class:"btn btn-default btn-xs")%></td>
       </tr>
       <%end%>
     </tbody>

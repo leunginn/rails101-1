@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-before_action :authenticate_user!,only:[:new,:create,:edit,:update,:destroy]
+before_action :authenticate_user!,only:[:new,:create,:edit,:update,:destroy,:join,:quit]
 before_action :find_group_and_check_permission,only:[:edit,:update,:destroy]
   def index
     @groups=Group.all
@@ -33,6 +33,26 @@ before_action :find_group_and_check_permission,only:[:edit,:update,:destroy]
     @group.destroy
     flash[:alert]="Group deleted"
     redirect_to groups_path
+  end
+  def join
+    @group=Group.find(params[:id])
+    if !current_user.is_member_of?(@group)
+      current_user.join!(@group)
+      flash[:notice]="join this discuss area success"
+    else
+      flash[:warning]="you have already belong to this disscuss"
+    end
+    redirect_to group_path(@group)
+  end
+  def quit
+    @group=Group.find(params[:id])
+    if current_user.is_member_of?(@group)
+      current_user.quit!(@group)
+      flash[:alert]="dropdown this discuss area"
+    else
+      flash[:warning]="you are not belong to this discuss"
+    end
+    redirect_to groups_path(@group)
   end
 
 
